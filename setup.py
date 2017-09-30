@@ -21,7 +21,7 @@ class PyTest(TestCommand):
 
 setup(
     name='dissect',
-    version='0.1.0',
+    version='0.1.1',
     description='COMPOSES DISSECT TOOLKIT',
     author='Georgiana Dinu, The Nghia Pham, Marco Baroni',
     author_email='georgiana.dinu@unitn.it,thenghia.pham@unitn.it',
