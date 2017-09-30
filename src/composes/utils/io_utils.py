@@ -226,17 +226,18 @@ def read_dense_space_data(matrix_file, row2id, element_type=np.double):
         if not line.strip() == "":
             elements = line.strip().split()
             if len(elements) != no_cols + 1:
-                raise ValueError("Invalid row: %s, expected %d fields"
-                                 % (line.strip(), no_cols + 1))
+                continue
+                # raise ValueError("Invalid row: %s, expected %d fields"
+                #                  % (line.strip(), no_cols + 1))
             word = elements[0]
             if word in row2id:
                 i = row2id[word]
                 if word in row_string_set != 0:
-                    warn("Found duplicate row: %s. Ignoring it." % word)
+                    continue
+                    #warn("Found duplicate row: %s. Ignoring it." % word)
                 else:
                     m[i, :] = elements[1:]
                     row_string_set.add(word)
-
     f.close()
 
     return DenseMatrix(m)
@@ -286,4 +287,3 @@ def print_cooc_mat_dense_format(matrix_, id2row, file_prefix):
             v = DenseMatrix(matrix_[i]).mat.flat
             line = "\t".join([row] + [repr(v[j]) for j in range(len(v))])
             f.write("%s\n" % line)
-
